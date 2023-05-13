@@ -13,20 +13,18 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +84 .config/nvim/lua/plugins.lua
-badd +491 ~/.config/lvim/config.lua
+badd +62 .config/lvim/config.lua
 argglobal
 %argdel
-$argadd .config/nvim/lua/plugins.lua
-edit ~/.config/lvim/config.lua
+$argadd ~/Desktop/girnarsoft-fs-rupyy
+edit .config/lvim/config.lua
 argglobal
-balt .config/nvim/lua/plugins.lua
-let s:l = 429 - ((13 * winheight(0) + 13) / 27)
+let s:l = 62 - ((11 * winheight(0) + 14) / 28)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 429
-normal! 0
+keepjumps 62
+normal! 032|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
