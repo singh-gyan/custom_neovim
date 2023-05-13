@@ -9,6 +9,15 @@ for _, lsp in ipairs(servers) do
 	})
 end
 
+local navic = require("nvim-navic")
+local on_attach = function(client, bufnr)
+	if client.server_capabilities.documentSymbolProvider then
+		navic.attach(client, bufnr)
+	end
+end
+lspconfig.clangd.setup({
+	on_attach = on_attach,
+})
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)

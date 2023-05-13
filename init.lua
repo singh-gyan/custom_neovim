@@ -1,5 +1,6 @@
 require("plugins")
 require("options")
-require("keymappings")
-require("autocommands")
 require("configs")
+require("autocommands")
+require("globals")
+require("keymappings")

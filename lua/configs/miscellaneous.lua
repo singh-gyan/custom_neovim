@@ -4,10 +4,6 @@ require'nvim-lastplace'.setup {
     lastplace_open_folds = true
 }
 
--- vim.opt.list = true
--- vim.opt.listchars:append "space:⋅"
--- vim.opt.listchars:append "eol:↴"
-
 require("indent_blankline").setup {
     space_char_blankline = " ",
     show_current_context = true,
@@ -16,15 +12,23 @@ require("indent_blankline").setup {
 
 
 local actions = require("telescope.actions")
-local trouble = require("trouble.providers.telescope")
+local telescope_trouble = require("trouble.providers.telescope")
+local trouble = require("trouble")
 
 local telescope = require("telescope")
 
+trouble.setup{
+ position = "right",
+	width = 40
+}
 telescope.setup {
   defaults = {
     mappings = {
-      i = { ["<c-t>"] = trouble.open_with_trouble },
-      n = { ["<c-t>"] = trouble.open_with_trouble },
+      i = { ["<c-t>"] = telescope_trouble.open_with_trouble },
+      n = { ["<c-t>"] = telescope_trouble.open_with_trouble },
     },
   },
 }
+
+
+require'navigator'.setup()

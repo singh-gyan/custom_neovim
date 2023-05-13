@@ -42,7 +42,7 @@ packer.init({
 vim.cmd([[packadd packer.nvim]])
 return packer.startup(function(use)
 	use({ "folke/which-key.nvim" })
-	use({ "nvim-lua/plenary.nvim", commit = "4b7e52044bbb84242158d977a50c4cbcd85070c7" })
+	use({ "nvim-lua/plenary.nvim" })
 	use({ "navarasu/onedark.nvim" })
 	use({ "catppuccin/nvim", as = "catppuccin" })
 	use({
@@ -88,7 +88,7 @@ return packer.startup(function(use)
 	use({ "saadparwaiz1/cmp_luasnip" })
 	use({ "jose-elias-alvarez/null-ls.nvim" })
 	use({ "hrsh7th/cmp-buffer" }) -- buffer completions
-	use({ "hrsh7th/cmp-path" }) -- path completions
+	use({ "hrsh7th/cmp-path" })  -- path completions
 	use({ "hrsh7th/cmp-nvim-lsp" })
 	use({ "hrsh7th/cmp-nvim-lua" })
 	use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
@@ -110,15 +110,28 @@ return packer.startup(function(use)
 		"nvim-lualine/lualine.nvim",
 		requires = { "nvim-tree/nvim-web-devicons", opt = true },
 	})
+	use({
+		"akinsho/toggleterm.nvim",
+		tag = "*",
+		config = function()
+			require("toggleterm").setup()
+		end,
+	})
 
 	--Additional Plugins
 	use({
 		"SmiteshP/nvim-navic",
 		requires = "neovim/nvim-lspconfig",
+		config = function()
+			require("nvim-navic").setup()
+		end,
 	})
 	use({
 		"phaazon/hop.nvim",
 		branch = "v2", -- optional but strongly recommended
+		config = function()
+			require("hop").setup()
+		end,
 	})
 	use({
 		"tpope/vim-surround",
@@ -139,17 +152,19 @@ return packer.startup(function(use)
 	})
 	use({
 		"APZelos/blamer.nvim",
-		config = function()
-			vim.g.blamer_enabled = 1
-			vim.g.blamer_delay = 300
-			vim.g.blamer_relative_time = 1
-			vim.g.blamer_date_format = "%b %e %H:%M"
-		end,
 	})
 	use({ "mbbill/undotree" })
 	use({ "theprimeagen/harpoon" })
 	use({ "christoomey/vim-tmux-navigator" })
 	use("lukas-reineke/indent-blankline.nvim")
 	use({ "RRethy/vim-illuminate" })
+
 	--Experimenting with the packages
+	use({
+		"ray-x/navigator.lua",
+		requires = {
+			{ "ray-x/guihua.lua",     run = "cd lua/fzy && make" },
+			{ "neovim/nvim-lspconfig" },
+		},
+	})
 end)
