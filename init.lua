@@ -1,0 +1,5 @@
+require("plugins")
+require("options")
+require("keymappings")
+require("autocommands")
+require("configs")

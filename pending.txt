@@ -1,0 +1,2 @@
+1. TO show error in buffer line when the file is still not saved
+2. Show the current row number in the side number column2.
