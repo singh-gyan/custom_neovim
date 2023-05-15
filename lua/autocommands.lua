@@ -89,6 +89,19 @@ local definitions = {
 			end,
 		},
 	},
+	-- {
+	-- 	"BufEnter",
+	-- 	{
+	-- 		group = "_filetype_settings",
+	-- 		pattern = "*",
+	-- 		callback = function()
+	-- 			local git_root = require("lspconfig").util.find_git_ancestor(vim.fn.expand("%:p"))
+	-- 			if git_root then
+	-- 				vim.cmd("cd " .. git_root)
+	-- 			end
+	-- 		end,
+	-- 	},
+	-- },
 }
 
 define_autocmds(definitions)

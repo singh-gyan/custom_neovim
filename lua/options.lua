@@ -1,4 +1,6 @@
+vim.cmd("set undodir=~/.config/nvim/undo_cache")
 local options = {
+	undofile = true,
 	wrap = true,
 	linebreak = true,
 	breakindent = true,
@@ -14,7 +16,7 @@ local options = {
 	showtabline = 2,
 	smartcase = true,   -- smart case
 	smartindent = true,
-	timeoutlen = 300,   -- time to wait for a mapped sequence to complete (in milliseconds)
+	timeoutlen = 400,   -- time to wait for a mapped sequence to complete (in milliseconds)
 	updatetime = 100,   -- faster completion (4000ms default)
 	shiftwidth = 2,     -- the number of spaces inserted for each indentation
 	tabstop = 2,        -- insert 2 spaces for a tab
@@ -32,4 +34,4 @@ local options = {
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
-vim.cmd("colorscheme catppuccin-macchiato")
+vim.cmd("colorscheme catppuccin-mocha")

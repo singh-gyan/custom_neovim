@@ -82,15 +82,7 @@ local opts = {
 local mappings = {
 	["/"] = { ":noh<CR>", "highlight" },
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-	p = {
-		name = "Packer",
-		c = { "<cmd>PackerCompile<cr>", "Compile" },
-		i = { "<cmd>PackerInstall<cr>", "Install" },
-		s = { "<cmd>PackerSync<cr>", "Sync" },
-		S = { "<cmd>PackerStatus<cr>", "Status" },
-		u = { "<cmd>PackerUpdate<cr>", "Update" },
-	},
-	["c"] = { "<cmd>Bdelete<cr>", "Close Buffer" },
+	["x"] = { "<cmd>Bdelete<cr>", "Close Buffer" },
 	["f"] = {
 		"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
 		"Find files",
@@ -161,6 +153,21 @@ local mappings = {
 		l = { ":lua require('harpoon.ui').nav_next()<cr>", "Next file" },
 		h = { ":lua require('harpoon.ui').nav_prev()<cr>", "Prev file" },
 	},
+	n = {
+		name = "+Neorg",
+		n = { "<cmd>Neorg index<cr>", "Index" },
+		r = { "<cmd>Neorg return<cr>", "Return" },
+		p = { "<cmd>Neorg workspace personal<cr>", "Personal" },
+		w = { "<cmd>Neorg Workspace work<cr>", "Work" },
+	},
+	p = {
+		name = "Packer",
+		c = { "<cmd>PackerCompile<cr>", "Compile" },
+		i = { "<cmd>PackerInstall<cr>", "Install" },
+		s = { "<cmd>PackerSync<cr>", "Sync" },
+		S = { "<cmd>PackerStatus<cr>", "Status" },
+		u = { "<cmd>PackerUpdate<cr>", "Update" },
+	},
 	["s"] = {
 		name = "+Search",
 		-- b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
@@ -180,8 +187,9 @@ local mappings = {
 		s = { "<cmd>Telescope resume<cr>", "Resume Search" },
 		w = {
 			"<cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword>') })<cr>",
-			" Search Word Under Cursor",
+			"Search Word Under Cursor",
 		},
+		y = { "<cmd>Telescope yank_history<cr>", "YankHistory" },
 	},
 	["S"] = {
 		name = "+Session",
@@ -199,6 +207,7 @@ local mappings = {
 		w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
 	},
 	u = { "<cmd>UndotreeToggle<cr>", "UndoTree" },
+	z = { "<cmd>echo expand('%:p')<cr>", "FilePath" },
 }
 
 which_key.setup(setup)

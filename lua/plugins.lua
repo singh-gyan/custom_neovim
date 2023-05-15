@@ -43,16 +43,11 @@ vim.cmd([[packadd packer.nvim]])
 return packer.startup(function(use)
 	use({ "folke/which-key.nvim" })
 	use({ "nvim-lua/plenary.nvim" })
-	use({ "navarasu/onedark.nvim" })
-	use({ "catppuccin/nvim", as = "catppuccin" })
 	use({
 		"nvim-tree/nvim-tree.lua",
 		requires = {
 			"nvim-tree/nvim-web-devicons", -- optional
 		},
-	})
-	use({
-		"folke/which-key.nvim",
 	})
 	use({
 		"williamboman/mason.nvim",
@@ -65,18 +60,10 @@ return packer.startup(function(use)
 	use({
 		"folke/trouble.nvim",
 		requires = "nvim-tree/nvim-web-devicons",
-		-- config = function()
-		-- 	require("trouble").setup({
-		-- 		-- your configuration comes here
-		-- 		-- or leave it empty to use the default settings
-		-- 		-- refer to the configuration section below
-		-- 	})
-		-- end,
 	})
 	use({
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.1",
-		-- or                            , branch = '0.1.x',
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
 	use({ "L3MON4D3/LuaSnip" })
@@ -102,9 +89,7 @@ return packer.startup(function(use)
 	use({ "onsails/lspkind.nvim" })
 	use({ "windwp/nvim-autopairs" })
 	use({ "windwp/nvim-ts-autotag" })
-	use({
-		"lewis6991/gitsigns.nvim",
-	})
+	use({ "lewis6991/gitsigns.nvim" })
 	use({ "akinsho/bufferline.nvim", tag = "*", requires = "nvim-tree/nvim-web-devicons" })
 	use({
 		"nvim-lualine/lualine.nvim",
@@ -117,20 +102,28 @@ return packer.startup(function(use)
 			require("toggleterm").setup()
 		end,
 	})
-
+	use({
+		"phaazon/hop.nvim",
+		branch = "v2", -- optional but strongly recommended
+		config = function()
+			require("hop").setup()
+		end,
+	})
+	use({
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		after = "nvim-treesitter",
+		requires = "nvim-treesitter/nvim-treesitter",
+	})
+	use({ "RRethy/nvim-treesitter-textsubjects" })
+	--Colors schemes
+	use({ "navarasu/onedark.nvim" })
+	use({ "catppuccin/nvim", as = "catppuccin" })
 	--Additional Plugins
 	use({
 		"SmiteshP/nvim-navic",
 		requires = "neovim/nvim-lspconfig",
 		config = function()
 			require("nvim-navic").setup()
-		end,
-	})
-	use({
-		"phaazon/hop.nvim",
-		branch = "v2", -- optional but strongly recommended
-		config = function()
-			require("hop").setup()
 		end,
 	})
 	use({
@@ -156,15 +149,32 @@ return packer.startup(function(use)
 	use({ "mbbill/undotree" })
 	use({ "theprimeagen/harpoon" })
 	use({ "christoomey/vim-tmux-navigator" })
-	use("lukas-reineke/indent-blankline.nvim")
+	use({ "lukas-reineke/indent-blankline.nvim" })
 	use({ "RRethy/vim-illuminate" })
 
 	--Experimenting with the packages
+	use({ "m-demare/hlargs.nvim" })
+	use({
+		"nvim-treesitter/nvim-treesitter-context",
+		config = function()
+			local context = require("treesitter-context")
+			context.setup({ max_lines = 2 })
+			vim.keymap.set("n", "[c", function()
+				context.go_to_context()
+			end, { silent = true })
+		end,
+	})
 	use({
 		"ray-x/navigator.lua",
 		requires = {
 			{ "ray-x/guihua.lua",     run = "cd lua/fzy && make" },
 			{ "neovim/nvim-lspconfig" },
 		},
+	})
+	use("gbprod/yanky.nvim")
+	use({
+		"nvim-neorg/neorg",
+		run = ":Neorg sync-parsers",
+		requires = "nvim-lua/plenary.nvim",
 	})
 end)
