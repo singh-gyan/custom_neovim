@@ -76,7 +76,7 @@ local opts = {
 	buffer = nil,  -- Global mappings. Specify a buffer number for buffer local mappings
 	silent = true, -- use `silent` when creating keymaps
 	noremap = true, -- use `noremap` when creating keymaps
-	nowait = true, -- use `nowait` when creating keymaps
+	nowait = false, -- use `nowait` when creating keymaps
 }
 
 local mappings = {
@@ -153,6 +153,13 @@ local mappings = {
 		l = { ":lua require('harpoon.ui').nav_next()<cr>", "Next file" },
 		h = { ":lua require('harpoon.ui').nav_prev()<cr>", "Prev file" },
 	},
+
+	l = {
+		name = "lsp",
+		d = { "<cmd>:LspSymbols<cr>", "Symbols" },
+		k = { "<cmd>:LspKeymaps<cr>", "keymaps" },
+		m = { "<cmd>:Mason<cr>", "Mason" },
+	},
 	n = {
 		name = "+Neorg",
 		n = { "<cmd>Neorg index<cr>", "Index" },
@@ -160,7 +167,7 @@ local mappings = {
 		p = { "<cmd>Neorg workspace personal<cr>", "Personal" },
 		w = { "<cmd>Neorg Workspace work<cr>", "Work" },
 	},
-	p = {
+	P = {
 		name = "Packer",
 		c = { "<cmd>PackerCompile<cr>", "Compile" },
 		i = { "<cmd>PackerInstall<cr>", "Install" },

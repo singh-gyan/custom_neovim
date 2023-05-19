@@ -16,11 +16,12 @@ local options = {
 	showtabline = 2,
 	smartcase = true,   -- smart case
 	smartindent = true,
-	timeoutlen = 400,   -- time to wait for a mapped sequence to complete (in milliseconds)
-	updatetime = 100,   -- faster completion (4000ms default)
+	swapfile = false,   -- creates a swapfile
+	timeoutlen = 300,   -- time to wait for a mapped sequence to complete (in milliseconds)
+	updatetime = 500,   -- faster completion (4000ms default)
 	shiftwidth = 2,     -- the number of spaces inserted for each indentation
 	tabstop = 2,        -- insert 2 spaces for a tab
-	numberwidth = 4,    -- set number column width to 2 {default 4}
+	numberwidth = 5,    -- set number column width to 2 {default 4}
 	cmdheight = 1,      -- more space in the neovim command line for displaying messages
 	writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 	signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
@@ -29,9 +30,13 @@ local options = {
 	cursorline = true,
 	splitbelow = true,  -- force all horizontal splits to go below current window
 	splitright = true,  -- force all vertical splits to go to the right of current window
+	termguicolors = true,
+	background = "dark",
+	whichwrap = "bs<>[]hl", -- which "horizontal" keys are allowed to travel to prev/next line
+	-- iskeyword = "-",
 }
 
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
-vim.cmd("colorscheme catppuccin-mocha")
+vim.cmd("colorscheme github_dark_colorblind")

@@ -38,16 +38,20 @@ terminal.setup({
 	-- lvim.builtin.terminal.execs[#lvim.builtin.terminal.execs+1] = {"gdb", "tg", "GNU Debugger"}
 	-- TODO: pls add mappings in which key and refactor this
 	execs = {
-		{ vim.o.shell, "<M-1>", "Horizontal Terminal", "horizontal", 0.3 },
-		{ vim.o.shell, "<M-2>", "Vertical Terminal",   "vertical",   0.4 },
-		{ vim.o.shell, "<M-3>", "Float Terminal",      "float",      nil },
+		{ vim.o.shell, "<A-1>", "Horizontal Terminal", "horizontal", 0.3 },
+		{ vim.o.shell, "<A-2>", "Vertical Terminal",   "vertical",   0.4 },
+		{ vim.o.shell, "<A-3>", "Float Terminal",      "float",      nil },
 	},
 })
 
 function _G.set_terminal_keymaps()
 	local opts = { noremap = true }
 	-- vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
-	-- vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
+	-- vim.api.nvim_buf_set_keymap(0, "t", "kj", [[<C-\><C-n>]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "<A-1>", [[<C-\><C-n>]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "<A-2>", [[<C-\><C-n>]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "<A-3>", [[<C-\><C-n>]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "<A-4>", [[<C-\><C-n>]], opts)
 	vim.api.nvim_buf_set_keymap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], opts)
 	vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], opts)
 	vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], opts)

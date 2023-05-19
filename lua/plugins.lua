@@ -86,6 +86,7 @@ return packer.startup(function(use)
 			require("Comment").setup()
 		end,
 	})
+	use({ "JoosepAlviste/nvim-ts-context-commentstring" })
 	use({ "onsails/lspkind.nvim" })
 	use({ "windwp/nvim-autopairs" })
 	use({ "windwp/nvim-ts-autotag" })
@@ -98,9 +99,6 @@ return packer.startup(function(use)
 	use({
 		"akinsho/toggleterm.nvim",
 		tag = "*",
-		config = function()
-			require("toggleterm").setup()
-		end,
 	})
 	use({
 		"phaazon/hop.nvim",
@@ -117,7 +115,17 @@ return packer.startup(function(use)
 	use({ "RRethy/nvim-treesitter-textsubjects" })
 	--Colors schemes
 	use({ "navarasu/onedark.nvim" })
-	use({ "catppuccin/nvim", as = "catppuccin" })
+	use("folke/tokyonight.nvim")
+	use({ "catppuccin/nvim", as = "cat" })
+	use({
+		"projekt0n/github-nvim-theme",
+		config = function()
+			require("github-theme").setup({
+				-- ...
+			})
+		end,
+	})
+	use({ "rose-pine/neovim", as = "rose-pine" })
 	--Additional Plugins
 	use({
 		"SmiteshP/nvim-navic",
@@ -151,8 +159,26 @@ return packer.startup(function(use)
 	use({ "christoomey/vim-tmux-navigator" })
 	use({ "lukas-reineke/indent-blankline.nvim" })
 	use({ "RRethy/vim-illuminate" })
-
+	use({
+		"goolord/alpha-nvim",
+		config = function()
+			require("alpha").setup(require("alpha.themes.dashboard").config)
+		end,
+	})
+	use({ "nvim-telescope/telescope-project.nvim", requires = { "nvim-telescope/telescope-file-browser.nvim" } })
 	--Experimenting with the packages
+	use({
+		"nvim-telescope/telescope-frecency.nvim",
+		config = function()
+			require("telescope").load_extension("frecency")
+		end,
+		requires = { "kkharji/sqlite.lua" },
+	})
+	use({
+		"nvim-telescope/telescope-fzf-native.nvim",
+		run =
+		"cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+	})
 	use({ "m-demare/hlargs.nvim" })
 	use({
 		"nvim-treesitter/nvim-treesitter-context",

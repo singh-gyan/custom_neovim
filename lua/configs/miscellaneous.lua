@@ -10,6 +10,7 @@ require("indent_blankline").setup({
 	show_current_context_start = true,
 })
 
+require("plenary")
 local actions = require("telescope.actions")
 local telescope_trouble = require("trouble.providers.telescope")
 local trouble = require("trouble")

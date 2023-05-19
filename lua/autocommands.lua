@@ -89,6 +89,28 @@ local definitions = {
 			end,
 		},
 	},
+	{
+		"ModeChanged",
+		{
+			group = "_mode_settings",
+			pattern = "*:[vV]*",
+
+			callback = function()
+				vim.cmd("BlamerHide")
+			end,
+		},
+	},
+	{
+		"ModeChanged",
+		{
+			group = "_mode_settings",
+			pattern = "[vV\x16]*:*",
+
+			callback = function()
+				vim.cmd("BlamerShow")
+			end,
+		},
+	},
 	-- {
 	-- 	"BufEnter",
 	-- 	{
