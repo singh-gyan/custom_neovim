@@ -114,14 +114,27 @@ return packer.startup(function(use)
 	})
 	use({ "RRethy/nvim-treesitter-textsubjects" })
 	--Colors schemes
-	use({ "navarasu/onedark.nvim" })
+	use({
+		"navarasu/onedark.nvim",
+		config = function()
+			require("onedark").setup({
+				theme = "darker",
+			})
+		end,
+	})
+	use("olimorris/onedarkpro.nvim")
 	use("folke/tokyonight.nvim")
 	use({ "catppuccin/nvim", as = "cat" })
 	use({
 		"projekt0n/github-nvim-theme",
 		config = function()
 			require("github-theme").setup({
-				-- ...
+				options = {
+					inverse = {
+						search = true,
+						visual = true,
+					},
+				},
 			})
 		end,
 	})

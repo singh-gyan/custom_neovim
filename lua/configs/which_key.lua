@@ -156,7 +156,7 @@ local mappings = {
 
 	l = {
 		name = "lsp",
-		d = { "<cmd>:LspSymbols<cr>", "Symbols" },
+		s = { "<cmd>:LspSymbols<cr>", "Symbols" },
 		k = { "<cmd>:LspKeymaps<cr>", "keymaps" },
 		m = { "<cmd>:Mason<cr>", "Mason" },
 	},

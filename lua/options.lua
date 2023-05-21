@@ -17,7 +17,7 @@ local options = {
 	smartcase = true,   -- smart case
 	smartindent = true,
 	swapfile = false,   -- creates a swapfile
-	timeoutlen = 300,   -- time to wait for a mapped sequence to complete (in milliseconds)
+	timeoutlen = 700,   -- time to wait for a mapped sequence to complete (in milliseconds)
 	updatetime = 500,   -- faster completion (4000ms default)
 	shiftwidth = 2,     -- the number of spaces inserted for each indentation
 	tabstop = 2,        -- insert 2 spaces for a tab
@@ -33,10 +33,9 @@ local options = {
 	termguicolors = true,
 	background = "dark",
 	whichwrap = "bs<>[]hl", -- which "horizontal" keys are allowed to travel to prev/next line
-	-- iskeyword = "-",
 }
 
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
-vim.cmd("colorscheme github_dark_colorblind")
+vim.cmd("colorscheme tokyonight-night")
