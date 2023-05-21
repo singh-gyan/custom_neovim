@@ -43,9 +43,7 @@ Certainly! Here's a formatted table of your key mappings:
 | `]P`            | `<Plug>(YankyPutIndentAfterLinewise)`          | Put the yanked text with indent after the current line |
 | `[P`            | `<Plug>(YankyPutIndentBeforeLinewise)`         | Put the yanked text with indent before the current line |
 | `>p`            | `<Plug>(YankyPutIndentAfterShiftRight)`        | Put the yanked text with shifted indent after the current line |
-| `<p`            | `<Plug>(YankyPutIndentAfterShiftLeft)`         | Put the yanked text with shifted indent after the
-
- current line |
+| `<p`            | `<Plug>(YankyPutIndentAfterShiftLeft)`         | Put the yanked text with shifted indent after the current line |
 | `>P`            | `<Plug>(YankyPutIndentBeforeShiftRight)`       | Put the yanked text with shifted indent before the current line |
 | `<P`            | `<Plug>(YankyPutIndentBeforeShiftLeft)`        | Put the yanked text with shifted indent before the current line |
 | `=p`            | `<Plug>(YankyPutAfterFilter)`                   | Put the yanked text after the current line and format with filter |
