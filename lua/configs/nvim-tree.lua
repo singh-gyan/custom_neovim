@@ -130,4 +130,12 @@ nvim_tree.setup({
 		side = "left",
 	},
 	on_attach = on_attach,
+	filters = {
+		dotfiles = true,
+	},
+	actions = {
+		change_dir = {
+			enable = false,
+		},
+	},
 })

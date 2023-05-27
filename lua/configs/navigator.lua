@@ -170,7 +170,7 @@ local nav_icons = {
 	diagnostic_head_severity_2 = "☣️",
 	diagnostic_head_severity_3 = icon.diagnostics.Debug,
 	diagnostic_head_description = "👹",
-	diagnostic_virtual_text = "🦊",
+	diagnostic_virtual_text = "",
 	diagnostic_file = "🚑",
 	-- Values
 	value_changed = "📝",

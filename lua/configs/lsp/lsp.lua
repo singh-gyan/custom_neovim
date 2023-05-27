@@ -1,7 +1,7 @@
 -- Setup language servers.
 local lspconfig = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-local servers = { "clangd", "pyright", "tsserver", "lua_ls", "vimls" }
+local servers = { "clangd", "tsserver", "lua_ls", "vimls", "lemminx", "yamlls", "luau_lsp" }
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
 		-- on_attach = my_custom_on_attach,
@@ -9,15 +9,6 @@ for _, lsp in ipairs(servers) do
 	})
 end
 
-local navic = require("nvim-navic")
-local on_attach = function(client, bufnr)
-	if client.server_capabilities.documentSymbolProvider then
-		navic.attach(client, bufnr)
-	end
-end
-lspconfig.clangd.setup({
-	on_attach = on_attach,
-})
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)

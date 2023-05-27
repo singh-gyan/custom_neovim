@@ -32,10 +32,6 @@ Certainly! Here's a formatted table of your key mappings:
 | `S`             | `:HopWordBC<CR>`                               | Hop to the next word backwards                      |
 | `s`             | `:HopWordAC<CR>`                               | Hop to the next word forwards                       |
 | `<C-t>`         | `:ToggleTerm<CR>`                              | Toggle the terminal                                |
-| `<Plug>(YankyPutAfter)`      | -                                      | Yank and put the text after the cursor              |
-| `<Plug>(YankyPutBefore)`     | -                                      | Yank and put the text before the cursor             |
-| `<Plug>(YankyGPutAfter)`     | -                                      | Yank and put the text after the cursor in visual mode |
-| `<Plug>(YankyGPutBefore)`    | -                                      | Yank and put the text before the cursor in visual mode |
 | `<c-x>`         | `<Plug>(YankyCycleForward)`                    | Cycle forward through yank history                  |
 | `<c-p>`         | `<Plug>(YankyCycleBackward)`                   | Cycle backward through yank history                 |
 | `]p`            | `<Plug>(YankyPutIndentAfterLinewise)`          | Put the yanked text with indent after the current line |

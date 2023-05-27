@@ -9,7 +9,13 @@ telescope.setup({
 	defaults = {
 		prompt_prefix = " ",
 		selection_caret = " ",
-
+		hidden = true,
+		file_ignore_patterns = {
+			"node_modules",
+			"build",
+			"dist",
+			"yarn.lock",
+		},
 		mappings = {
 			i = {
 				["<C-n>"] = actions.cycle_history_next,
@@ -80,6 +86,11 @@ telescope.setup({
 		},
 	},
 	pickers = {
+		find_files = {
+			-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+			find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+			-- find_command = {'rg', '--files', '--hidden', '-g', '!.git', '-g', '!node_modules', '-g', '.gitignore'}
+		},
 		-- Default configuration for builtin pickers goes here:
 		-- picker_name = {
 		--   picker_config_key = value,
@@ -94,7 +105,11 @@ telescope.setup({
 		--   extension_config_key = value,
 		-- }
 		-- please take a look at the readme of the extension you want to configure
+		file_browser = {
+			find_command = { "rg", "--files", "--hidden", "--no-ignore-vcs", "-g", "!.git" }, -- Add any additional options or filters here
+		},
 	},
 })
 require("telescope").load_extension("project")
+require("telescope").load_extension("file_browser")
 -- require("telescope").load_extension("fzy")

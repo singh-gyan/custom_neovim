@@ -96,7 +96,6 @@ local mappings = {
 		g = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Find" },
 		b = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
 		n = { "<cmd>BufferLineCycleNext<cr>", "Next" },
-		-- w = { "<cmd>BufferWipeout<cr>", "Wipeout" }, -- TODO: implement this for bufferline
 		e = {
 			"<cmd>BufferLinePickClose<cr>",
 			"Pick which buffer to close",
@@ -153,10 +152,10 @@ local mappings = {
 		l = { ":lua require('harpoon.ui').nav_next()<cr>", "Next file" },
 		h = { ":lua require('harpoon.ui').nav_prev()<cr>", "Prev file" },
 	},
-
 	l = {
-		name = "lsp",
+		name = "+Lsp",
 		s = { "<cmd>:LspSymbols<cr>", "Symbols" },
+		i = { "<cmd>:LspInfo<cr>", "Symbols" },
 		k = { "<cmd>:LspKeymaps<cr>", "keymaps" },
 		m = { "<cmd>:Mason<cr>", "Mason" },
 	},
@@ -165,25 +164,20 @@ local mappings = {
 		n = { "<cmd>Neorg index<cr>", "Index" },
 		r = { "<cmd>Neorg return<cr>", "Return" },
 		p = { "<cmd>Neorg workspace personal<cr>", "Personal" },
-		w = { "<cmd>Neorg Workspace work<cr>", "Work" },
+		w = { "<cmd>Neorg workspace work<cr>", "Work" },
 	},
-	P = {
-		name = "Packer",
-		c = { "<cmd>PackerCompile<cr>", "Compile" },
-		i = { "<cmd>PackerInstall<cr>", "Install" },
-		s = { "<cmd>PackerSync<cr>", "Sync" },
-		S = { "<cmd>PackerStatus<cr>", "Status" },
-		u = { "<cmd>PackerUpdate<cr>", "Update" },
-	},
+	L = { "<cmd>Lazy<cr>", "Lazy" },
 	["s"] = {
 		name = "+Search",
-		-- b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-		b = { "<cmd>Telescope builtin<cr>", "Checkout branch" },
+		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+		B = { "<cmd>Telescope builtin<cr>", "Builtins" },
 		C = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
+		e = { "<cmd>Telescope file_browser<cr>", "File Browse" },
 		h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
 		M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
 		r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
 		R = { "<cmd>Telescope registers<cr>", "Registers" },
+		t = { "<cmd>TodoTelescope<cr>", "Registers" },
 		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
 		c = { "<cmd>Telescope commands<cr>", "Commands" },
 		g = { "<cmd>Telescope live_grep<cr>", "Grep" },
@@ -204,7 +198,7 @@ local mappings = {
 		l = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Restore last session" },
 		Q = { "<cmd>lua require('persistence').stop()<cr>", "Quit without saving session" },
 	},
-	["t"] = {
+	["T"] = {
 		name = "+Trouble",
 		r = { "<cmd>Trouble lsp_references<cr>", "References" },
 		f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
@@ -212,6 +206,15 @@ local mappings = {
 		q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
 		l = { "<cmd>Trouble loclist<cr>", "LocationList" },
 		w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
+	},
+	["t"] = {
+		name = "+Tresitter",
+		h = {
+			function()
+				require("tsht").nodes()
+			end,
+			"hop",
+		},
 	},
 	u = { "<cmd>UndotreeToggle<cr>", "UndoTree" },
 	z = { "<cmd>echo expand('%:p')<cr>", "FilePath" },

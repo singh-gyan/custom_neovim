@@ -78,6 +78,7 @@ return packer.startup(function(use)
 	use({ "hrsh7th/cmp-path" })  -- path completions
 	use({ "hrsh7th/cmp-nvim-lsp" })
 	use({ "hrsh7th/cmp-nvim-lua" })
+	use({ "hrsh7th/cmp-cmdline" })
 	use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
 	use({ "rafamadriz/friendly-snippets" }) -- a bunch of snippets to use
 	use({
@@ -108,20 +109,22 @@ return packer.startup(function(use)
 		end,
 	})
 	use({
+		"ray-x/navigator.lua",
+		requires = {
+			{ "ray-x/guihua.lua",     run = "cd lua/fzy && make" },
+			{ "neovim/nvim-lspconfig" },
+		},
+	})
+	use({
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		after = "nvim-treesitter",
 		requires = "nvim-treesitter/nvim-treesitter",
 	})
 	use({ "RRethy/nvim-treesitter-textsubjects" })
 	--Colors schemes
-	use({
-		"navarasu/onedark.nvim",
-		config = function()
-			require("onedark").setup({
-				theme = "darker",
-			})
-		end,
-	})
+	-- use({
+	-- 	"navarasu/onedark.nvim",
+	-- })
 	use("olimorris/onedarkpro.nvim")
 	use("folke/tokyonight.nvim")
 	use({ "catppuccin/nvim", as = "cat" })
@@ -139,6 +142,8 @@ return packer.startup(function(use)
 		end,
 	})
 	use({ "rose-pine/neovim", as = "rose-pine" })
+	--Development Plugins
+	use({ "nvim-treesitter/playground" })
 	--Additional Plugins
 	use({
 		"SmiteshP/nvim-navic",
@@ -179,7 +184,15 @@ return packer.startup(function(use)
 		end,
 	})
 	use({ "nvim-telescope/telescope-project.nvim", requires = { "nvim-telescope/telescope-file-browser.nvim" } })
+	use("mfussenegger/nvim-treehopper")
 	--Experimenting with the packages
+	-- TODO Move essential to additional plugins
+	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
+	-- use("m4xshen/hardtime.nvim")
+	use({
+		"folke/todo-comments.nvim",
+		requires = "nvim-lua/plenary.nvim",
+	})
 	use({
 		"nvim-telescope/telescope-frecency.nvim",
 		config = function()
@@ -202,13 +215,6 @@ return packer.startup(function(use)
 				context.go_to_context()
 			end, { silent = true })
 		end,
-	})
-	use({
-		"ray-x/navigator.lua",
-		requires = {
-			{ "ray-x/guihua.lua",     run = "cd lua/fzy && make" },
-			{ "neovim/nvim-lspconfig" },
-		},
 	})
 	use("gbprod/yanky.nvim")
 	use({

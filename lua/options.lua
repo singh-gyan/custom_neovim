@@ -14,14 +14,15 @@ local options = {
 	hlsearch = true,
 	mouse = "a",
 	showtabline = 2,
-	smartcase = true,   -- smart case
+	smartcase = true, -- smart case
+	ignorecase = true,
 	smartindent = true,
 	swapfile = false,   -- creates a swapfile
 	timeoutlen = 700,   -- time to wait for a mapped sequence to complete (in milliseconds)
 	updatetime = 500,   -- faster completion (4000ms default)
 	shiftwidth = 2,     -- the number of spaces inserted for each indentation
 	tabstop = 2,        -- insert 2 spaces for a tab
-	numberwidth = 5,    -- set number column width to 2 {default 4}
+	numberwidth = 4,    -- set number column width to 2 {default 4}
 	cmdheight = 1,      -- more space in the neovim command line for displaying messages
 	writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 	signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
@@ -33,9 +34,15 @@ local options = {
 	termguicolors = true,
 	background = "dark",
 	whichwrap = "bs<>[]hl", -- which "horizontal" keys are allowed to travel to prev/next line
+	--Fold options - Disable when not using nvim-ufo
+	foldcolumn = "1",
+	fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]],
+	foldlevel = 99,
+	foldlevelstart = 99,
+	foldenable = true,
 }
 
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
-vim.cmd("colorscheme tokyonight-night")
+vim.cmd("colorscheme catppuccin-macchiato")

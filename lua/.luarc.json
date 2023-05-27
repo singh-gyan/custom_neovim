@@ -1,5 +1,9 @@
 {
     "diagnostics.globals": [
         "vim"
+    ],
+    "workspace.library": [
+        "/home/abhigyan/.local/share/nvim/mason/packages/lua-language-server/libexec/meta/04d55983",
+        "/home/abhigyan/.local/share/nvim/mason/packages/lua-language-server/libexec/meta/0a04076c"
     ]
 }
