@@ -1,10 +1,7 @@
-local opts = { silent = true, noremap = true }
-local function map(mode, key, value, default)
-	local opt = nil
-	if default == nil then
-		opt = opts
-	else
-		opt = { silent = true, noremap = false }
+local opt = { silent = true, noremap = true }
+local function map(mode, key, value, desc)
+	if not desc == nil then
+		opt.des = desc
 	end
 	vim.keymap.set(mode, key, value, opt)
 end
@@ -21,6 +18,10 @@ map("i", "kj", "<ESC>")
 map("i", "jk", "<ESC>")
 map("n", "j", "gj")
 map("n", "k", "gk")
+map("n", "<C-u>", "<C-u>zz", "Half up and centre screen")
+map("n", "<C-d>", "<C-d>zz", "Half down and centre screen")
+map("n", "<C-f>", "<C-f>zz", "Full up and centre screen")
+map("n", "<C-b>", "<C-b>zz", "Full down and centre screen")
 
 map("n", "<C-s>", ":w<CR>")
 map("n", "<C-e>", ":e!<CR>")
@@ -29,14 +30,48 @@ map("n", "<A-a>y", "ggVGy<CR>")
 map("n", "<A-a>d", "ggVGd<CR>")
 map("n", "<A-a>x", "ggVGx<CR>")
 
+map("n", "`", "m")
+map("n", "m", "`")
+local function toUpperCase(char)
+	return string.upper(char)
+end
+
+-- PERF: Improve this for better performance
+---------------------------
+-- local letters = "abcdefghijklmnopqrstuvwxyz"
+-- for i = 1, #letters do
+-- 	local char = letters:sub(i, i)
+-- 	local mapping = "m" .. char
+-- 	local cmd = "`" .. toUpperCase(char)
+-- 	vim.api.nvim_set_keymap("n", mapping, cmd, opts)
+-- end
+-- for i = 1, #letters do
+-- 	local char = letters:sub(i, i)
+-- 	local mapping = "`" .. char
+-- 	local cmd = "m" .. toUpperCase(char)
+-- 	vim.api.nvim_set_keymap("n", mapping, cmd, opts)
+-- end
+----------------------------
 map("n", "<S-l>", ":bnext<CR>")
 map("n", "<S-h>", ":bprevious<CR>")
 map("n", "<A-l>", ":BufferLineMoveNext<CR>")
 map("n", "<A-h>", ":BufferLineMovePrev<CR>")
 map("n", "S", ":HopWordBC<cr>")
 map("n", "s", ":HopWordAC<cr>")
-map({ "o", "x" }, "m", '<Cmd>lua require("tsht").nodes()<CR>')
+map({ "v", "o", "x" }, "m", '<Cmd>lua require("tsht").nodes()<CR>')
 map("n", "<C-t>", ":ToggleTerm<CR>")
+map("n", ";m", ":lua require('harpoon.mark').add_file()<cr>")
+map("n", ";t", ":lua require('harpoon.ui').toggle_quick_menu()<cr>")
+map("n", ";a", ":lua require('harpoon.ui').nav_file(1)<cr>")
+map("n", ";s", ":lua require('harpoon.ui').nav_file(2)<cr>")
+map("n", ";d", ":lua require('harpoon.ui').nav_file(3)<cr>")
+map("n", ";f", ":lua require('harpoon.ui').nav_file(4)<cr>")
+map("n", ";g", ":lua require('harpoon.ui').nav_file(5)<cr>")
+map("n", ";l", ":lua require('harpoon.ui').nav_next()<cr>")
+map("n", ";h", ":lua require('harpoon.ui').nav_prev()<cr>")
+map("n", "`l", ":MarksListBuf<cr>")
+map("n", "`L", ":MarksListAll<cr>")
+map("n", "`m", ":MarksToggleSigns<cr>")
 map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
 map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
 map({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
@@ -64,7 +99,7 @@ map("n", "zR", require("ufo").openAllFolds)
 map("n", "zM", require("ufo").closeAllFolds)
 map("n", "zk", function()
 	require("ufo").goPreviousStartFold()
-end)
+end, "Prev Fold")
 map("n", "zj", function()
 	require("ufo").goNextClosedFold()
 end)
@@ -74,7 +109,7 @@ map("n", "zK", function()
 		-- choose one of coc.nvim and nvim lsp
 		vim.lsp.buf.hover()
 	end
-end)
+end, "Fold Preview")
 
 map({ "n", "v" }, "D", '"_D')
 map({ "n", "v" }, "d", '"_d')

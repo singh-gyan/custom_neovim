@@ -209,7 +209,7 @@ require("navigator").setup({
 	lsp = {
 		format_on_save = {
 			enable = { "lua", "go" },
-			disable = { "javascript", "typescript", "scss", "css", "yml", "ejs" },
+			disable = { "javascript", "typescript", "scss", "css", "yml", "ejs", "json" },
 		},
 		tsserver = {
 			filetypes = { "javascript", "javascriptreact" },

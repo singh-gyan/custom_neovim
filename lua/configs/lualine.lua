@@ -17,6 +17,12 @@ local diagnostics = {
 local diff = {
 	"diff",
 	colored = true,
+	diff_color = {
+		-- Same color values as the general color option can be used here.
+		added = "#11d821",                                        -- Changes the diff's added color
+		modified = "DiffChange",                                  -- Changes the diff's modified color
+		removed = "DiffDelete",                                   -- Changes the diff's removed color you
+	},
 	symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
 	cond = hide_in_width,
 }
@@ -46,7 +52,7 @@ local location = {
 ll.setup({
 	options = {
 		icons_enabled = true,
-		theme = "auto",
+		theme = "catppuccin",
 		component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },
 		disabled_filetypes = {
@@ -57,9 +63,10 @@ ll.setup({
 		always_divide_middle = true,
 		globalstatus = false,
 		refresh = {
-			statusline = 1000,
-			tabline = 1000,
-			winbar = 1000,
+			-- sets how often lualine should refresh it's contents (in ms)
+			statusline = 300, -- The refresh option sets minimum time that lualine tries
+			tabline = 300, -- to maintain between refresh. It's not guarantied if situation
+			winbar = 300,
 		},
 	},
 	sections = {
@@ -67,9 +74,22 @@ ll.setup({
 			mode,
 		},
 		lualine_b = { branch, diff, diagnostics },
-		lualine_c = {},
+		lualine_c = {
+			{
+				require("noice").api.status.mode.get,
+				cond = require("noice").api.status.mode.has,
+				-- color = { fg = "ff9e64" },
+			},
+		},
 		lualine_x = { "filetype" },
-		lualine_y = { "progress" },
+		lualine_y = {
+			-- {
+			-- 	require("noice").api.status.command.get,
+			-- 	cond = require("noice").api.status.command.has,
+			-- 	color = { fg = "ff9e64" },
+			-- },
+			"progress",
+		},
 		lualine_z = { location },
 	},
 	inactive_sections = {
@@ -83,5 +103,7 @@ ll.setup({
 	tabline = {},
 	winbar = {},
 	inactive_winbar = {},
-	extensions = { "nvim-tree" },
+	extensions = { "nvim-tree", "trouble", "symbols-outline" },
 })
+
+require("lualine").refresh()

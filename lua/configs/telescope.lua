@@ -4,6 +4,7 @@ if not status_ok then
 end
 
 local actions = require("telescope.actions")
+local telescope_trouble = require("trouble.providers.telescope")
 
 telescope.setup({
 	defaults = {
@@ -18,21 +19,23 @@ telescope.setup({
 		},
 		mappings = {
 			i = {
-				["<C-n>"] = actions.cycle_history_next,
-				["<C-p>"] = actions.cycle_history_prev,
+				-- ["<C-n>"] = actions.cycle_history_next,
+				-- ["<C-p>"] = actions.cycle_history_prev,
 
-				["<C-j>"] = actions.move_selection_next,
-				["<C-k>"] = actions.move_selection_previous,
+				-- ["<C-j>"] = actions.move_selection_next,
+				-- ["<C-k>"] = actions.move_selection_previous,
+
+				["<C-j>"] = actions.toggle_selection + actions.move_selection_worse,
+				["<C-k>"] = actions.toggle_selection + actions.move_selection_better,
 
 				["<C-c>"] = actions.close,
 
 				["<Down>"] = actions.move_selection_next,
 				["<Up>"] = actions.move_selection_previous,
 
-				["<CR>"] = actions.select_default,
+				-- ["<CR>"] = actions.select_default,
 				["<C-x>"] = actions.select_horizontal,
 				["<C-v>"] = actions.select_vertical,
-				["<C-t>"] = actions.select_tab,
 
 				["<C-u>"] = actions.preview_scrolling_up,
 				["<C-d>"] = actions.preview_scrolling_down,
@@ -40,12 +43,13 @@ telescope.setup({
 				["<PageUp>"] = actions.results_scrolling_up,
 				["<PageDown>"] = actions.results_scrolling_down,
 
-				["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-				["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+				-- ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+				-- ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
 				["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
 				["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 				["<C-l>"] = actions.complete_tag,
 				["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
+				["<C-t>"] = telescope_trouble.open_with_trouble,
 				-- Press Ctrl+F to toggle between fuzzy finding and regex search
 				-- ["<C-f>"] = actions.toggle_fuzzy,
 				-- Press Ctrl+R to toggle between fuzzy finding and regex search
@@ -81,6 +85,10 @@ telescope.setup({
 				["<PageUp>"] = actions.results_scrolling_up,
 				["<PageDown>"] = actions.results_scrolling_down,
 
+				["J"] = actions.cycle_history_next,
+				["K"] = actions.cycle_history_prev,
+
+				["<c-t>"] = telescope_trouble.open_with_trouble,
 				["?"] = actions.which_key,
 			},
 		},
@@ -112,4 +120,7 @@ telescope.setup({
 })
 require("telescope").load_extension("project")
 require("telescope").load_extension("file_browser")
+require("telescope").load_extension("noice")
+require("telescope").load_extension("frecency")
+require("telescope").load_extension("yank_history")
 -- require("telescope").load_extension("fzy")

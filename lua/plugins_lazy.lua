@@ -37,14 +37,20 @@ require("lazy").setup({
 		version = "0.1.1",
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
-	{ "L3MON4D3/LuaSnip" },
+	{
+		"L3MON4D3/LuaSnip",
+		-- follow latest release.
+		version = "1.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+		-- install jsregexp (optional!).
+		-- build = "make install_jsregexp"
+	},
 	{ "hrsh7th/nvim-cmp" },
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		opt = true,
 	},
-	{ "saadparwaiz1/cmp_luasnip" },
+	-- { "saadparwaiz1/cmp_luasnip" },
 	{ "jose-elias-alvarez/null-ls.nvim" },
 	{ "hrsh7th/cmp-buffer" },
 	{ "hrsh7th/cmp-path" },
@@ -143,6 +149,7 @@ require("lazy").setup({
 	},
 	{ "mbbill/undotree" },
 	{ "theprimeagen/harpoon" },
+	{ "gbprod/yanky.nvim" },
 	{ "christoomey/vim-tmux-navigator" },
 	{ "lukas-reineke/indent-blankline.nvim" },
 	{ "RRethy/vim-illuminate" },
@@ -155,11 +162,44 @@ require("lazy").setup({
 	{ "nvim-telescope/telescope-project.nvim", dependencies = { "nvim-telescope/telescope-file-browser.nvim" } },
 	{ "mfussenegger/nvim-treehopper" },
 	{ "kevinhwang91/nvim-ufo",                 dependencies = "kevinhwang91/promise-async" },
+	{
+		"nvim-pack/nvim-spectre",
+		cmd = "Spectre",
+		lazy = true,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		config = function()
+			local context = require("treesitter-context")
+			context.setup({ max_lines = 2 })
+			vim.keymap.set("n", "[c", function()
+				context.go_to_context()
+			end, { silent = true })
+		end,
+	},
 	--Experimenting with the packages
 	-- TODO Move essential to additional plugins
-	-- "m4xshen/hardtime.nvim")
-	"junegunn/fzf",
-	{ "nvim-pack/nvim-spectre", cmd = "Spectre", lazy = true },
+	{ "m4xshen/hardtime.nvim" },
+	-- {
+	-- 	"SmiteshP/nvim-navic",
+	-- 	dependencies = "neovim/nvim-lspconfig",
+	-- },
+	{ "chentoast/marks.nvim" },
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {
+			-- add any options here
+		},
+		dependencies = {
+			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+			"MunifTanjim/nui.nvim",
+			-- OPTIONAL:
+			--   `nvim-notify` is only needed, if you want to use the notification view.
+			--   If not available, we use `mini` as the fallback
+			"rcarriga/nvim-notify",
+		},
+	},
 	{
 		"folke/todo-comments.nvim",
 		dependencies = "nvim-lua/plenary.nvim",
@@ -171,23 +211,7 @@ require("lazy").setup({
 		end,
 		dependencies = { "kkharji/sqlite.lua" },
 	},
-	{
-		"nvim-telescope/telescope-fzf-native.nvim",
-		build =
-		"cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-	},
-	{ "m-demare/hlargs.nvim" },
-	{
-		"nvim-treesitter/nvim-treesitter-context",
-		config = function()
-			local context = require("treesitter-context")
-			context.setup({ max_lines = 2 })
-			vim.keymap.set("n", "[c", function()
-				context.go_to_context()
-			end, { silent = true })
-		end,
-	},
-	{ "gbprod/yanky.nvim" },
+	-- { "m-demare/hlargs.nvim" },
 	{
 		"nvim-neorg/neorg",
 		build = ":Neorg sync-parsers",

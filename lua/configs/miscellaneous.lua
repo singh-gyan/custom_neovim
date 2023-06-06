@@ -15,9 +15,8 @@ require("yanky").setup({
 	-- or leave it empty to use the default settings
 	-- refer to the configuration section below
 })
-vim.cmd(":lua require('telescope').load_extension('yank_history')")
 
-require("hlargs").setup()
+-- require("hlargs").setup()
 require("todo-comments").setup({
 	signs = true,     -- show icons in the signs column
 	sign_priority = 8, -- sign priority
@@ -83,19 +82,31 @@ require("todo-comments").setup({
 	},
 })
 
--- require("hardtime").setup({
--- 	max_time = 1000,
--- 	max_count = 2,
--- 	disable_mouse = false,
--- 	hint = true,
--- 	allow_different_key = false,
--- 	resetting_keys = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "c", "d" },
--- 	restricted_keys = { "h", "j", "k", "l", "gk", "gj", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>" },
--- 	hint_keys = { "k", "j", "^", "$", "a", "x", "i", "d", "y", "c", "l" },
--- 	disabled_keys = { "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>" },
--- 	disabled_filetypes = { "qf", "netrw", "NvimTree", "lazy", "mason", "undotree", "trouble", "packer", "lsp", "guihua" },
--- })
---
+require("hardtime").setup({
+	max_time = 1000,
+	max_count = 2,
+	disable_mouse = false,
+	hint = true,
+	allow_different_key = false,
+	resetting_keys = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "c", "d" },
+	restricted_keys = { "h", "j", "k", "l", "gk", "gj", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>" },
+	hint_keys = { "k", "j", "^", "$", "a", "x", "i", "d", "y", "c", "l" },
+	disabled_keys = { "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>" },
+	disabled_filetypes = {
+		"qf",
+		"netrw",
+		"NvimTree",
+		"lazy",
+		"mason",
+		"undotree",
+		"trouble",
+		"packer",
+		"lsp",
+		"guihua",
+		"Spectre"
+	},
+})
+
 require("ufo").setup({
 	provider_selector = function(bufnr, filetype, buftype)
 		return { "treesitter", "indent" }
@@ -103,3 +114,28 @@ require("ufo").setup({
 	open_fold_hl_timeout = 100,
 })
 
+local key_maps = {
+	set = "`",
+	set_next = "`,",
+	next = "mn",
+	preview = "m:",
+	set_bookmark0 = "`0",
+	prev = false, -- pass false to disable only this default mapping
+}
+require("marks").setup({
+	mappings = {
+		set = "`",
+		set_next = "`,",
+		next = "mn",
+		prev = "mp",
+		preview = "m:",
+		set_bookmark0 = "`0",
+	},
+})
+
+-- local function overrideMapping(default, key1, key2)
+-- 	for i = 0, 9 do
+-- 		local map = default .. i
+-- 		mappings[map] = key1 .. key2
+-- 	end
+-- end

@@ -9,6 +9,9 @@ local nkeymap = function(from, to, opts)
 	keymap("n", from, to, opts)
 end
 local hop_ok, hop = pcall(require, "hop")
+if not hop_ok then
+	return
+end
 if hop_ok then
 	local directions = require("hop.hint").HintDirection
 	local modes = { "n", "o", "v" }
